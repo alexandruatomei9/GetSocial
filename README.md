@@ -13,9 +13,16 @@ Social Network, User Profiling, Cloud Computing, Stable Matching Algorithms,  Lo
 Psychologists claim that you have a limit of how many friends you can handle so we thought to try improving the way a user gets his friendship suggestions on a social networks so he could improve his "happiness" and "commodity" in the on-line environment. The main idea is that a user will recieve friendship suggestions based on the hobbies listed on his profile and not on the already existing set of friends. This could be a wrong idea but it is worth a shot.
 
 ##Related Work
-1. Stable-matching
+1. **Stable-matching**
 An early ancestor of our work is the stable marriage problem, introduced by Gale and Shapley in 1962: We are given n nodes, partitioned into two sets commonly denoted as men and women. Each woman has a strictly ordered preference list over all men and vice versa. They now want to create a stable matching. A matching is called stable if there is no pair of man and woman such that, instead of being matched to their current partner, they would prefer to be matched to each other.
-2. User profiling
+2. **User profiling** 
+A profile is a description of someone containing the most important or interesting facts about him/her. In the context of users of software applications, a profile(user model) contains essential information about an individual user. Discovering the differences between these users is vital in order to provide personalized services.  
+**Personalization search** is a technique related to User Profiling. It refers to search experiences that are tailored specifically to an individual's interests by incorporating information about the individual beyond specific query provided(see [Google Search](https://en.wikipedia.org/wiki/Google_Personalized_Search), [Facebook Search](https://www.facebook.com/notes/facebook-engineering/intro-to-facebook-search/365915113919))  
+Previous user profilling systems:
+	1. PointCast - the system allows the user to build an interest profile from a predefined set of broad subject such as "sports", "weather".
+	2. NewsPage Direct uses Salton’s SMART system to provide personalized access to news. In this approach the user builds an interest profile from a set of over 2,500 topics ordered in a hierarchy. The user may browse the hierarchy while selecting leaf nodes to include in the profile. 
+    ...
+ 
 
 
 
@@ -68,6 +75,8 @@ We will use the profiles created to find the N best friends for Luke(where N is 
 [On Finding Better Friends in Social Networks](http://www.tik.ee.ethz.ch/file/d4748aa2644eca9eb6aa143029e9c2d1/Social.pdf)
 
 [Local Matching Dynamics in Social Networks](https://people.mpi-inf.mpg.de/~mhoefer/08-0x/Hoefer11Matching.pdf)
+
+[Using NLP for Machine Learning of User Profiles](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.1634&rep=rep1&type=pdf )
 
 [Facebook API - get friends](https://developers.facebook.com/docs/graph-api/reference/v2.5/user/friends)
 
