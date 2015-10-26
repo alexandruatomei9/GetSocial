@@ -52,3 +52,26 @@ When developing our application we will use different APIs like: Facebook DataAp
     ...
 }
 ```
+
+We will use the profiles created to find the N best friends for Luke(where N is the maximum number of friends that Luke can have) by calculating a score for every user based on the common "features" between them and Luke(for example they both like comedy moovies and they have watched at least same 10 movies).
+
+
+##Useful Links
+
+[On Finding Better Friends in Social Networks](http://www.tik.ee.ethz.ch/file/d4748aa2644eca9eb6aa143029e9c2d1/Social.pdf)
+
+[Local Matching Dynamics in Social Networks](https://people.mpi-inf.mpg.de/~mhoefer/08-0x/Hoefer11Matching.pdf)
+
+[Facebook API - get friends](https://developers.facebook.com/docs/graph-api/reference/v2.5/user/friends)
+
+[Facebook API - get books](https://developers.facebook.com/docs/graph-api/reference/user/books/)
+
+[Facebook API - get movies](https://developers.facebook.com/docs/graph-api/reference/user/movies/)
+
+[Facebook API - get music](https://developers.facebook.com/docs/graph-api/reference/user/music/)
+
+[Facebook API - get TV shows](https://developers.facebook.com/docs/graph-api/reference/user/television/)
+
+[Twitter API - get friend suggestions](https://dev.twitter.com/rest/reference/get/users/suggestions)
+
+[Stable Matching Algorithms Articles](https://scholar.google.ro/scholar?q=stable+matching+algorithms+and+social+networks&hl=ro&as_sdt=0&as_vis=1&oi=scholart&sa=X&ved=0CBwQgQMwAGoVChMIlPfs04HgyAIVC9IaCh3E2gls)
