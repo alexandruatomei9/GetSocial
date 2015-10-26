@@ -13,8 +13,12 @@ Social Network, User Profiling, Cloud Computing, Stable Matching Algorithms,  Lo
 Psychologists claim that you have a limit of how many friends you can handle so we thought to try improving the way a user gets his friendship suggestions on a social networks so he could improve his "happiness" and "commodity" in the on-line environment. The main idea is that a user will recieve friendship suggestions based on the hobbies listed on his profile and not on the already existing set of friends. This could be a wrong idea but it is worth a shot.
 
 ##Related Work
-
+1. Stable-matching
 An early ancestor of our work is the stable marriage problem, introduced by Gale and Shapley in 1962: We are given n nodes, partitioned into two sets commonly denoted as men and women. Each woman has a strictly ordered preference list over all men and vice versa. They now want to create a stable matching. A matching is called stable if there is no pair of man and woman such that, instead of being matched to their current partner, they would prefer to be matched to each other.
+2. User profiling
+
+
+
 
 ##Model
 
