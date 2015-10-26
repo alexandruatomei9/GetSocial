@@ -58,6 +58,8 @@ We will use the profiles created to find the N best friends for Luke(where N is 
 
 ##Useful Links
 
+[A partner-matching framework for social activity communities](http://www.computationalsocialnetworks.com/content/pdf/s40649-014-0005-0.pdf )
+
 [On Finding Better Friends in Social Networks](http://www.tik.ee.ethz.ch/file/d4748aa2644eca9eb6aa143029e9c2d1/Social.pdf)
 
 [Local Matching Dynamics in Social Networks](https://people.mpi-inf.mpg.de/~mhoefer/08-0x/Hoefer11Matching.pdf)
