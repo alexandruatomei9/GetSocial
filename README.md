@@ -19,7 +19,6 @@ An early ancestor of our work is the stable marriage problem, introduced by Gale
 
 
 
-
 ##Model
 
 Starting from the central idea of the Gale-Shapley algorithm and given an user(let's call him Luke) from a Social Network we will denote two sets of users for the individual in cause: 
