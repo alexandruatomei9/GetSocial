@@ -22,6 +22,6 @@ public class ConnectionsFactory {
 		} else if(api.equals(SocialNetworks.IMDB)) {
 			return new ImdbApiConnection();
 		}
-		throw new IllegalArgumentException("No such currency");
+		throw new IllegalArgumentException("No such api");
 	}
 }
