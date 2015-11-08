@@ -1,14 +1,17 @@
 package info.getsocial.connections;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import info.getsocial.AbstractTest;
 import info.getsocial.domain.Movie;
 import info.getsocial.domain.exception.GetSocialException;
 
-public class ImdbApiConnectionTest {
+public class ImdbApiConnectionTest extends AbstractTest{
 
 	@Autowired
 	private ConnectionsFactory connectionFactory;
@@ -17,7 +20,7 @@ public class ImdbApiConnectionTest {
 	
 	@Test
 	public void testGetMovie() throws GetSocialException {
-		//given
+		//given		
 		String title = "Star Wars";
 		apiConnection = (ImdbApiConnection) connectionFactory.getConnection(SocialNetworks.IMDB);
 		
@@ -26,15 +29,18 @@ public class ImdbApiConnectionTest {
 		
 		//then
 		assertNotNull(movie);
+		assertTrue(movie.getTitle().contains(title));
+		assertEquals("1977", movie.getYear());
+		assertEquals("8.7", movie.getImdbRating());
+		assertTrue(movie.getActors().contains("Harrison Ford"));
 	}
 	
 	@Test(expected = GetSocialException.class)
-	public void shouldThrowException() {
+	public void shouldThrowException() throws GetSocialException {
 		//given
-		String title = null;
 		apiConnection = (ImdbApiConnection) connectionFactory.getConnection(SocialNetworks.IMDB);
 		
 		//when
-		Movie movie = apiConnection.getMovieByTitle(title);
+		apiConnection.getMovieByTitle(null);
 	}
 }
