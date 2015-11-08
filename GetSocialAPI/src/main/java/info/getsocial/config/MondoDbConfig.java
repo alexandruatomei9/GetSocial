@@ -13,10 +13,9 @@ public class MondoDbConfig {
 	public @Bean MongoDbFactory getMongoDbFactory() throws Exception {
 		return new SimpleMongoDbFactory(new MongoClient("localhost", 27017), "getsocial");
 	}
-
+	
 	public @Bean MongoTemplate getMongoTemplate() throws Exception {
 		MongoTemplate mongoTemplate = new MongoTemplate(getMongoDbFactory());
 		return mongoTemplate;
 	}
-	
 }

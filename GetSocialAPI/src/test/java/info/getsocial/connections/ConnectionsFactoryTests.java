@@ -6,17 +6,20 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import info.getsocial.AbstractTest;
 
 public class ConnectionsFactoryTests extends AbstractTest {
 
+	@Autowired
 	private ConnectionsFactory connectionFactory;
+	
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
 	@Before
 	public void setup() {
-		connectionFactory = ConnectionsFactory.getInstance();
 	}
 
 	@After

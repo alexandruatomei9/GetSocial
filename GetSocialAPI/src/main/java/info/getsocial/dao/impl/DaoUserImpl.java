@@ -2,18 +2,23 @@ package info.getsocial.dao.impl;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.mongodb.WriteResult;
 
 import info.getsocial.dao.IDaoUser;
 import info.getsocial.domain.User;
 
+@Repository
 public class DaoUserImpl implements IDaoUser {
 
+	@Autowired
 	private MongoOperations mongoOps;
+
 	private static final String PERSON_COLLECTION = "Person";
 
 	@Override
@@ -25,7 +30,7 @@ public class DaoUserImpl implements IDaoUser {
 	public void update(User domain) {
 		this.mongoOps.save(domain, PERSON_COLLECTION);
 	}
-	
+
 	@Override
 	public void delete(User domain) {
 		this.mongoOps.remove(domain);

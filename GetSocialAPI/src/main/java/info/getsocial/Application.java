@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author Geoffroy Warin (http://geowarin.github.io)
  */
 @EnableAutoConfiguration
-@ComponentScan(basePackageClasses = {RestResource.class, MessageService.class})
+@ComponentScan(basePackages = { "info.getsocial" })
 public class Application {
 
     public static void main(String[] args) throws Exception {

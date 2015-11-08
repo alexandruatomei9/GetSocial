@@ -18,7 +18,7 @@ public class RestResource {
 
     @Autowired
     private MessageService messageService;
-
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
