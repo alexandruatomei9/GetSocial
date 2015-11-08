@@ -12,9 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/")
+@Path("/messages")
 @Component
-public class RestResource {
+public class MessagesResource {
 
     @Autowired
     private MessageService messageService;
@@ -28,7 +28,7 @@ public class RestResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/messages")
+    @Path("/list")
     public List<Message> message() {
         return messageService.getMessages();
     }

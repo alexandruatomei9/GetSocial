@@ -1,7 +1,7 @@
 package info.getsocial;
 
 import info.getsocial.config.JerseyConfig;
-import info.getsocial.rest.RestResource;
+import info.getsocial.rest.MessagesResource;
 import info.getsocial.service.MessageService;
 
 import org.glassfish.jersey.servlet.ServletContainer;
