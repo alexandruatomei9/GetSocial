@@ -1,9 +1,6 @@
 package info.getsocial;
 
 import info.getsocial.config.JerseyConfig;
-import info.getsocial.rest.MessagesResource;
-import info.getsocial.service.MessageService;
-
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,13 +8,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-/**
- * Date: 22/12/13
- * Time: 18:03
- *
- * @author Geoffroy Warin (http://geowarin.github.io)
- */
 @EnableAutoConfiguration
 @ComponentScan(basePackages = { "info.getsocial" })
 public class Application {

@@ -5,7 +5,6 @@ import info.getsocial.service.MessageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,11 +17,12 @@ public class MessagesResource {
 
     @Autowired
     private MessageService messageService;
- 
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
     public String hello() {
+    	Message msg = new Message("fdsfdas","dsadsads");
         return "Hello World";
     }
 

@@ -12,14 +12,13 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import info.getsocial.domain.User;
 import info.getsocial.domain.exception.ExceptionMessage;
 import info.getsocial.domain.exception.GetSocialException;
 import info.getsocial.service.UserService;
 
-@Path("/user")
 @Component
+@Path("/user")
 public class UserResource {
 	
 	@Autowired
