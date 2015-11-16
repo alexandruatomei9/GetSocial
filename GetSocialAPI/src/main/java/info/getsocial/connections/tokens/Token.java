@@ -2,6 +2,8 @@ package info.getsocial.connections.tokens;
 
 import java.util.Date;
 
+import info.getsocial.connections.tokens.state.TokenState;
+
 public class Token {
 	private TokenState state;
 	private Date activeUntil;

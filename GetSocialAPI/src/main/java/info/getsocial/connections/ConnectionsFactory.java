@@ -18,8 +18,8 @@ public class ConnectionsFactory {
 	}
 	
 	public SocialApiConnection getConnection(SocialNetworks api) {
-		if(api.equals(SocialNetworks.ARTIST_LINK)) {
-			return new ArtistLinkApiConnection();
+		if(api.equals(SocialNetworks.GOOD_READS)) {
+			return new GoodReadsApiConnection();
 		} else if(api.equals(SocialNetworks.FACEBOOK)) {
 			return new FacebookApiConnection();
 		} else if(api.equals(SocialNetworks.IMDB)) {

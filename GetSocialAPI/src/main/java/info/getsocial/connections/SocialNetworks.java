@@ -1,5 +1,5 @@
 package info.getsocial.connections;
 
 public enum SocialNetworks {
-	FACEBOOK, IMDB, ARTIST_LINK 
+	FACEBOOK, IMDB, GOOD_READS 
 }

@@ -1,6 +1,8 @@
-package info.getsocial.connections.tokens;
+package info.getsocial.connections.tokens.state;
 
 import java.util.Date;
+
+import info.getsocial.connections.tokens.Token;
 
 public class ActiveToken extends TokenState{
 

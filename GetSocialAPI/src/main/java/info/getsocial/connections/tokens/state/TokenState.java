@@ -1,4 +1,6 @@
-package info.getsocial.connections.tokens;
+package info.getsocial.connections.tokens.state;
+
+import info.getsocial.connections.tokens.Token;
 
 public abstract class TokenState {
 	

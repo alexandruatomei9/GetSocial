@@ -45,8 +45,8 @@ public class ConnectionsFactoryTests extends AbstractTest {
 	}
 	@Test
 	public void testThatConnectionFactoryReturnsArtist() {
-		SocialApiConnection apiConnection = connectionFactory.getConnection(SocialNetworks.ARTIST_LINK);
-		Assert.assertTrue(apiConnection instanceof ArtistLinkApiConnection);
+		SocialApiConnection apiConnection = connectionFactory.getConnection(SocialNetworks.GOOD_READS);
+		Assert.assertTrue(apiConnection instanceof GoodReadsApiConnection);
 	}
 	
 
