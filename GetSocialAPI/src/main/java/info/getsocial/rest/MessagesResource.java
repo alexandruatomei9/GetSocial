@@ -22,7 +22,6 @@ public class MessagesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
     public String hello() {
-    	Message msg = new Message("fdsfdas","dsadsads");
         return "Hello World";
     }
 
