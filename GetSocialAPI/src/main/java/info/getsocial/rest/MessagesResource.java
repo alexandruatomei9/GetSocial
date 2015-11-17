@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import info.getsocial.domain.Message;
+import info.getsocial.domain.RestResponse;
 import info.getsocial.service.MessageService;
 import info.getsocial.util.Loggable;
 
@@ -25,8 +26,8 @@ public class MessagesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
     @Loggable
-    public String hello() {
-        return "Hello World";
+    public RestResponse hello() {
+        return new RestResponse(1, "Hello World");
     }
 
     @GET
