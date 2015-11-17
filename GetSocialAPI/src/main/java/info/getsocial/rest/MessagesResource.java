@@ -1,6 +1,7 @@
 package info.getsocial.rest;
 
 import info.getsocial.domain.Message;
+import info.getsocial.domain.RestResponse;
 import info.getsocial.service.MessageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class MessagesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
-    public String hello() {
-        return "Hello World";
+    public RestResponse hello() {
+        return new RestResponse(1, "Hello World");
     }
 
     @GET

@@ -1,11 +1,13 @@
 package info.getsocial.aspect;
 
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import info.getsocial.domain.RestResponse;
 
@@ -17,16 +19,25 @@ public class ResponseWrappingAspect {
 	public void anyApiRequest() {
 	}
 
-	@Around("anyApiRequest()")
-	public Object unifyResponse(ProceedingJoinPoint pjp) throws Throwable {
-		Object controllerResult = pjp.proceed();
-		RestResponse result = new RestResponse(0, controllerResult);
-		return result;
+	@AfterReturning(value = "anyApiRequest()", returning = "response")
+	public RestResponse wrapResponse(Object response) {
+		RestResponse resp = (RestResponse)response;
+		resp.setStatus(200);
+		return resp;
 	}
 
 	@AfterThrowing(value = "anyApiRequest()", throwing = "cause")
 	public Object wrapException(Exception cause) {
 		return cause;
+	}
+
+	public String getJsonString(Object mainJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.writeValueAsString(mainJson);
+		} catch (JsonProcessingException e) {
+			return "Error ";
+		}
 	}
 
 }

@@ -6,15 +6,13 @@ public class RestResponse {
 	private String message;
 	private Object data;
 
+	public RestResponse() {}
+	
 	public RestResponse(int status, Object data) {
 		this.setStatus(status);
 		this.setData(data);
 	}
 
-	public RestResponse(int status, String message) {
-		this.setStatus(status);
-		this.setMessage(message);
-	}
 	// getters and setters
 
 	public int getStatus() {
