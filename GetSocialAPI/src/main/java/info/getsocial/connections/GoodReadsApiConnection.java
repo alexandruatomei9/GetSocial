@@ -22,6 +22,8 @@ public class GoodReadsApiConnection implements SocialApiConnection{
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Key: " + this.getToken().getTokenKey());
+		System.out.println("Secret: " + this.getToken().getTokenSecret());
 	}
 
 	public Token getToken() {

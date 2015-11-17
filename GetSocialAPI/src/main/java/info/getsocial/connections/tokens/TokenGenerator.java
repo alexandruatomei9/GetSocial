@@ -10,7 +10,7 @@ import info.getsocial.connections.tokens.state.ActiveToken;
 import info.getsocial.domain.exception.GetSocialException;
 
 public class TokenGenerator {
-	private static final String propFileName = "tokens.properties";
+	public static final String propFileName = "tokens.properties";
 
 	public Token getToken(SocialNetworks socialNetwork) throws GetSocialException{
 		Token token = null;
