@@ -8,10 +8,12 @@ import java.util.Properties;
 import info.getsocial.connections.SocialNetworks;
 import info.getsocial.connections.tokens.state.ActiveToken;
 import info.getsocial.domain.exception.GetSocialException;
+import info.getsocial.util.Loggable;
 
 public class TokenGenerator {
 	public static final String propFileName = "tokens.properties";
 
+	@Loggable
 	public Token getToken(SocialNetworks socialNetwork) throws GetSocialException{
 		Token token = null;
 		Properties props = null;

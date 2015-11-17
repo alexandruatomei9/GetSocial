@@ -1,15 +1,18 @@
 package info.getsocial.rest;
 
-import info.getsocial.domain.Message;
-import info.getsocial.service.MessageService;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import info.getsocial.domain.Message;
+import info.getsocial.service.MessageService;
+import info.getsocial.util.Loggable;
 
 @Path("/messages")
 @Component
@@ -21,6 +24,7 @@ public class MessagesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/hello")
+    @Loggable
     public String hello() {
         return "Hello World";
     }

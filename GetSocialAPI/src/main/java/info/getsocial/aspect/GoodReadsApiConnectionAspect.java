@@ -9,17 +9,20 @@ import java.util.Properties;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 import info.getsocial.connections.tokens.TokenGenerator;
 import info.getsocial.connections.tokens.TokenMapping;
 import info.getsocial.domain.exception.GetSocialException;
 
 @Aspect
+@Component
 public class GoodReadsApiConnectionAspect {
     
-	TokenGenerator tokenGenerator = new TokenGenerator();
+	private TokenGenerator tokenGenerator = new TokenGenerator();
 	
-	@Before("info.getsocial.connections.GoodReadsApiConnection.connect()")
+	@Before("execution(* info.getsocial.connections.GoodReadsApiConnection.connect())")
 	public void createDummyPropertiesIfNotExist() throws GetSocialException {
 		Properties props = null;
 		try{
@@ -30,11 +33,13 @@ public class GoodReadsApiConnectionAspect {
 		
 		if(props != null) {
 			URL url = getClass().getClassLoader().getResource(TokenGenerator.propFileName);
-			if(props.getProperty(TokenMapping.GOOD_READS_KEY) == null){
+			if(props.getProperty(TokenMapping.GOOD_READS_KEY) == null
+					|| props.get(TokenMapping.GOOD_READS_KEY).toString().isEmpty()){
 				props.setProperty(TokenMapping.GOOD_READS_KEY, "Dummy Key");
 			}
 			
-			if(props.getProperty(TokenMapping.GOOD_READS_SECRET) == null){
+			if(props.getProperty(TokenMapping.GOOD_READS_SECRET) == null
+					|| props.get(TokenMapping.GOOD_READS_SECRET).toString().isEmpty()){
 				props.setProperty(TokenMapping.GOOD_READS_SECRET, "Dummy Secret");
 			}
 			
