@@ -1,16 +1,13 @@
-package info.getsocial;
+package info.getsocial.config;
 
-import info.getsocial.config.JerseyConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "info.getsocial" })
 public class Application {
 
     public static void main(String[] args) throws Exception {

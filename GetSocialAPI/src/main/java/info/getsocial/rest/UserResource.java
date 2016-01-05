@@ -63,9 +63,11 @@ public class UserResource {
 				return Response.status(ExceptionMessage.NOT_FOUND.getCode())
 						.entity(ExceptionMessage.NOT_FOUND.getMessage()).build();
 			}
-			user.setEmail(email);
-			user.setName(name);
-			user.setPassword(password);
+			//TODO: update
+//			user.setEmail(email);
+//			user.setName(name);
+//			user.setPassword(password);
+			
 			userService.updateUser(user);
 			return Response.ok().build();
 		} catch(GetSocialException ex) {

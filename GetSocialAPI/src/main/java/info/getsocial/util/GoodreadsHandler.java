@@ -3,10 +3,9 @@ package info.getsocial.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import com.sun.xml.internal.ws.streaming.Attributes;
 
 import info.getsocial.domain.Book;
 
