@@ -49,6 +49,12 @@
 		</dependency>
 
 		<!-- Spring Boot -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -111,14 +117,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-social-facebook</artifactId>
 		</dependency>
-		
+
 		<!-- Persistence -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-erlang</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

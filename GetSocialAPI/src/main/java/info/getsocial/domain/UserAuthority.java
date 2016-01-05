@@ -1,4 +1,4 @@
-package info.getsocial.security;
+package info.getsocial.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import info.getsocial.domain.User;
 
 @Entity
 @IdClass(UserAuthority.class)

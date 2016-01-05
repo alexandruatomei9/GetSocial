@@ -1,6 +1,7 @@
 package info.getsocial.security;
 
 import info.getsocial.domain.User;
+import info.getsocial.domain.UserAuthority;
 
 public enum UserRole {
 	USER;

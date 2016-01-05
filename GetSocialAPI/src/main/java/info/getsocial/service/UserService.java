@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.social.connect.ConnectionKey;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,7 @@ import info.getsocial.domain.User;
 import info.getsocial.domain.exception.GetSocialException;
 import info.getsocial.security.SocialUserService;
 
-@Service
+@Component
 public class UserService implements SocialUserService {
 
 	@Autowired

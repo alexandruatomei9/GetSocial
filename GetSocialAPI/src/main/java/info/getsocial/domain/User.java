@@ -21,7 +21,6 @@ import org.springframework.social.security.SocialUserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import info.getsocial.security.UserAuthority;
 import info.getsocial.security.UserRole;
 
 @SuppressWarnings("serial")
