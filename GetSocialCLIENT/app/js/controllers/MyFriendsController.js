@@ -1,11 +1,7 @@
 'use strict';
 
-foodMeApp.controller('RestaurantsController',
-    function RestaurantsController($scope, customer, $location, Restaurant) {
-
-  if (!customer.address) {
-    $location.url('/customer');
-  }
+GetSocial.controller('MyFriendsController',
+    function MyFriendsController($scope) {
 
   var filter = $scope.filter = {
     cuisine: [],
@@ -13,7 +9,7 @@ foodMeApp.controller('RestaurantsController',
     rating: null
   };
 
-  var allRestaurants = Restaurant.query(filterAndSortRestaurants);
+  var allRestaurants = [];
   $scope.$watch('filter', filterAndSortRestaurants, true);
 
   function filterAndSortRestaurants() {

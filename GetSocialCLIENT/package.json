@@ -1,20 +1,16 @@
 {
-  "name": "FoodMe",
+  "name": "GetSocial",
   "version": "0.0.1",
-  "description": "Super awesome tutorial.",
+  "description": "Super awesome friends finder",
   "keywords": [],
   "homepage": "http://angularjs.org/",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/angular/foodme.git"
-  },
-  "author": "AngularJS Team",
+  "author": "Info Iasi",
   "contributors": [
-    "Igor Minár <igor@angularjs.org",
-    "Miško Hevery <misko@angularjs.org",
-    "Vojta Jína <vojta@angularjs.org"
+    "Alexandru Atomei<alexandru.atomei@info.uaic.ro>",
+    "Claudiu Iordache <claudiu.iordache@info.uaic.ro>",
+    "Madalina Melinte <ionela.melinte@info.uaic.ro>"
   ],
-  "main": "scripts/server.js",
+  "main": "app/js/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

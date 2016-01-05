@@ -1,3 +1,3 @@
 'use strict';
 
-foodMeApp.value('alert', window.alert);
+GetSocial.value('alert', window.alert);

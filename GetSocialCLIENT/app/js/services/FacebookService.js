@@ -1,6 +1,6 @@
 'use strict';
 
-foodMeApp.service('FacebookService', function FacebookService($rootScope, $http, alert, API_END_POINT) {
+GetSocial.service('FacebookService', function FacebookService($rootScope, $http, alert, API_END_POINT) {
   var self = this;
 
   self.facebookOauth = function() {
