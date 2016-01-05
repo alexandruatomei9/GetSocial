@@ -1,6 +1,6 @@
 'use strict';
 
-foodMeApp.directive('fmRating', function() {
+GetSocial.directive('fmRating', function() {
   return {
     restrict: 'E',
     scope: {

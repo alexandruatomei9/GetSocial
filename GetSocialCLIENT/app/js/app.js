@@ -1,38 +1,27 @@
 'use strict';
 
-var foodMeApp = angular.module('foodMeApp', ['ngResource']);
+var GetSocial = angular.module('GetSocial', ['ngResource']);
 
-foodMeApp.config(function($routeProvider) {
+GetSocial.config(function($routeProvider) {
 
   $routeProvider.
       when('/', {
-        controller: 'RestaurantsController',
-        templateUrl: 'views/restaurants.html'
+        controller: 'UserController',
+        templateUrl: 'views/login.html'
       }).
-      when('/menu/:restaurantId', {
-        controller: 'MenuController',
-        templateUrl: 'views/menu.html'
+      when('/profile', {
+        controller: 'ProfileController',
+        templateUrl: 'views/profile.html'
       }).
-      when('/checkout', {
-        controller: 'CheckoutController',
-        templateUrl: 'views/checkout.html'
-      }).
-      when('/thank-you', {
-        controller: 'ThankYouController',
-        templateUrl: 'views/thank-you.html'
-      }).
-      when('/customer', {
-        controller: 'CustomerController',
-        templateUrl: 'views/customer.html'
-      }).
-      when('/who-we-are', {
-		controller: 'WhoWeAreController',
-        templateUrl: 'views/who-we-are.html'
+      when('/my-friends', {
+		controller: 'MyFriendsController',
+        templateUrl: 'views/my-friends.html'
       }).
       when('/how-it-works', {
-        templateUrl: 'views/how-it-works.html'
+        controller: 'WhoWeAreController',
+        templateUrl: 'views/who-we-are.html'
       }).
-      when('/help', {
-        templateUrl: 'views/help.html'
-      });
+      otherwise({
+        redirectTo: '/'
+      });;
 }).constant('API_END_POINT', 'http://localhost:8080/rest');
