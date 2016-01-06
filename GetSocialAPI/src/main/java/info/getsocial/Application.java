@@ -1,6 +1,8 @@
 package info.getsocial;
 
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.social.UserIdSource;
 import org.springframework.social.security.SocialAuthenticationFilter;
@@ -46,7 +47,6 @@ public class Application extends WebSecurityConfigurerAdapter {
 		super(true);
 	}
 
-
 	@Autowired
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
@@ -67,7 +67,6 @@ public class Application extends WebSecurityConfigurerAdapter {
 			@Override
 			public <O extends SocialAuthenticationFilter> O postProcess(O socialAuthenticationFilter) {
 				 socialAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
-				 socialAuthenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler());
 				return socialAuthenticationFilter;
 			}
 		});

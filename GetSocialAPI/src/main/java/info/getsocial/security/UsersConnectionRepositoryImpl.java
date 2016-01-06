@@ -6,13 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionData;
-import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.ConnectionKey;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.connect.ConnectionSignUp;
-import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.*;
+import org.springframework.social.connect.mem.TemporaryConnectionRepository;
 
 import info.getsocial.domain.User;
 
@@ -56,7 +51,7 @@ public class UsersConnectionRepositoryImpl implements UsersConnectionRepository 
 
     @Override
     public ConnectionRepository createConnectionRepository(String userId) {
-        final ConnectionRepository connectionRepository = (ConnectionRepository) new TemporaryConnectionRepository(connectionFactoryLocator);
+        final ConnectionRepository connectionRepository = new TemporaryConnectionRepository(connectionFactoryLocator);
         final User user = userService.loadUserByUserId(userId);
         final ConnectionData connectionData = new ConnectionData(
                 user.getProviderId(),

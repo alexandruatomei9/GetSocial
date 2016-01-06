@@ -15,6 +15,7 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
@@ -35,8 +36,7 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 	public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer,
 			Environment environment) {
 		FacebookConnectionFactory fbConnFactory = new FacebookConnectionFactory(
-				environment.getProperty("facebook.appKey"), 
-				environment.getProperty("facebook.appSecret"),
+				environment.getProperty("facebook.appKey"), environment.getProperty("facebook.appSecret"),
 				environment.getProperty("facebook.appNameSpace"));
 		connectionFactoryConfigurer.addConnectionFactory(fbConnFactory);
 	}
@@ -59,7 +59,7 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
 		UsersConnectionRepositoryImpl usersConnectionRepository = new UsersConnectionRepositoryImpl(userService,
 				connectionFactoryLocator);
-
+		
 		// if no local user record exists yet for a facebook's user id
 		// automatically create a User and add it to the database
 		usersConnectionRepository.setConnectionSignUp(autoSignUpHandler);
