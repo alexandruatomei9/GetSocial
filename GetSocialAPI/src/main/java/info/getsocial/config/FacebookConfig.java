@@ -35,7 +35,9 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 	public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer,
 			Environment environment) {
 		FacebookConnectionFactory fbConnFactory = new FacebookConnectionFactory(
-				environment.getProperty("facebook.appKey"), environment.getProperty("facebook.appSecret"));
+				environment.getProperty("facebook.appKey"), 
+				environment.getProperty("facebook.appSecret"),
+				environment.getProperty("facebook.appNameSpace"));
 		connectionFactoryConfigurer.addConnectionFactory(fbConnFactory);
 	}
 

@@ -19,6 +19,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.social.UserIdSource;
 import org.springframework.social.security.SocialAuthenticationFilter;
@@ -26,6 +27,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
 
 import info.getsocial.config.JerseyConfig;
 import info.getsocial.security.AuthenticationFilter;
+import info.getsocial.security.AuthenticationSuccessHandler;
 import info.getsocial.security.SocialUserService;
 
 @Configuration
@@ -44,6 +46,10 @@ public class Application extends WebSecurityConfigurerAdapter {
 		super(true);
 	}
 
+
+	@Autowired
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
+	
 	@Autowired
 	private AuthenticationFilter authenticationFilter;
 
@@ -60,7 +66,8 @@ public class Application extends WebSecurityConfigurerAdapter {
 		socialConfigurer.addObjectPostProcessor(new ObjectPostProcessor<SocialAuthenticationFilter>() {
 			@Override
 			public <O extends SocialAuthenticationFilter> O postProcess(O socialAuthenticationFilter) {
-				// socialAuthenticationFilter.setAuthenticationSuccessHandler(socialAuthenticationSuccessHandler);
+				 socialAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
+				 socialAuthenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler());
 				return socialAuthenticationFilter;
 			}
 		});
@@ -69,18 +76,19 @@ public class Application extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 
 				// allow anonymous font and template requests
-				.antMatchers("/").permitAll().antMatchers("/favicon.ico").permitAll().antMatchers("/resources/**")
-				.permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/favicon.ico").permitAll()
+				.antMatchers("/resources/**").permitAll()
 
 				// allow anonymous calls to social login
 				.antMatchers("/auth/**").permitAll()
 
 				// all other request need to be authenticated
-				.antMatchers(HttpMethod.GET, "/api/users/current/details").hasRole("USER").anyRequest().hasRole("USER")
-				.and()
+				.antMatchers(HttpMethod.GET, "/rest/**").hasRole("USER")
+				
 				// add custom authentication filter for complete stateless JWT
 				// based authentication
-				.addFilterBefore(authenticationFilter, AbstractPreAuthenticatedProcessingFilter.class)
+				.and().addFilterBefore(authenticationFilter, AbstractPreAuthenticatedProcessingFilter.class)
 
 				// apply the configuration from the socialConfigurer (adds the
 				// SocialAuthenticationFilter)
