@@ -62,13 +62,6 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-		// UsersConnectionRepositoryImpl usersConnectionRepository = new
-		// UsersConnectionRepositoryImpl(userService,
-		// connectionFactoryLocator);
-		//
-		// // if no local user record exists yet for a facebook's user id
-		// // automatically create a User and add it to the database
-		// usersConnectionRepository.setConnectionSignUp(autoSignUpHandler);
 		
 		JdbcUsersConnectionRepository repo = new JdbcUsersConnectionRepository(datasource,
 												 connectionFactoryLocator,

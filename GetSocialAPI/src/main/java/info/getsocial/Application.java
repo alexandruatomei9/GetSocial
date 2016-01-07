@@ -27,6 +27,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
 import info.getsocial.config.JerseyConfig;
 import info.getsocial.security.AuthenticationFilter;
 import info.getsocial.security.AuthenticationSuccessHandler;
+import info.getsocial.security.RESTAuthenticationEntryPoint;
 import info.getsocial.security.SocialUserService;
 
 @Configuration
@@ -49,6 +50,9 @@ public class Application extends WebSecurityConfigurerAdapter {
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
 	@Autowired
+	private RESTAuthenticationEntryPoint authenticationEntryPoint;
+	
+	@Autowired
 	private AuthenticationFilter authenticationFilter;
 
 	@Autowired
@@ -69,8 +73,11 @@ public class Application extends WebSecurityConfigurerAdapter {
 			}
 		});
 
-		http.exceptionHandling().and().anonymous().and().servletApi().and().headers().cacheControl().and()
-				.authorizeRequests()
+		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+				.and().anonymous()
+				.and().servletApi()
+				.and().headers().cacheControl()
+				.and().authorizeRequests()
 
 				// allow anonymous font and template requests
 				.antMatchers("/").permitAll()
