@@ -1,8 +1,6 @@
 package info.getsocial;
 
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.beans.factory.annotation.Autowired;
