@@ -1,6 +1,6 @@
 'use strict';
 
-var GetSocial = angular.module('GetSocial', ['ngResource']);
+var GetSocial = angular.module('GetSocial', ['ngResource', 'ngCookies']);
 
 GetSocial.config(function($routeProvider) {
 
@@ -17,11 +17,11 @@ GetSocial.config(function($routeProvider) {
 		controller: 'MyFriendsController',
         templateUrl: 'views/my-friends.html'
       }).
-      when('/how-it-works', {
-        controller: 'WhoWeAreController',
-        templateUrl: 'views/who-we-are.html'
+      when('/metrics', {
+        controller: 'MetricsController',
+        templateUrl: 'views/metrics.html'
       }).
       otherwise({
         redirectTo: '/'
-      });;
-}).constant('API_END_POINT', 'http://localhost:8080/rest');
+      });
+}).constant('API_END_POINT', 'http://localhost:8080');
