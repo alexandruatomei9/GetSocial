@@ -21,6 +21,10 @@ GetSocial.config(function($routeProvider) {
         controller: 'WhoWeAreController',
         templateUrl: 'views/who-we-are.html'
       }).
+      when('/oauth_callback', {
+        controller: 'OauthCallbackController',
+        templateUrl: 'views/oauth_callback.html'
+      }).
       otherwise({
         redirectTo: '/'
       });;
