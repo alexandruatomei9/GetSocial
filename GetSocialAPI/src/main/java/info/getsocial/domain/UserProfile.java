@@ -2,10 +2,12 @@ package info.getsocial.domain;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -49,6 +51,12 @@ public class UserProfile {
 
 	@ElementCollection
 	private List<String> interestedIn;
+	
+	@ManyToMany
+	private Set<UserBook> books;
+	
+	@ManyToMany
+	private Set<UserMovie> movies;
 
 	public String getId() {
 		return id;
@@ -128,6 +136,22 @@ public class UserProfile {
 
 	public void setInterestedIn(List<String> interestedIn) {
 		this.interestedIn = interestedIn;
+	}
+
+	public Set<UserBook> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<UserBook> books) {
+		this.books = books;
+	}
+
+	public Set<UserMovie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(Set<UserMovie> movies) {
+		this.movies = movies;
 	}
 
 }

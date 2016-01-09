@@ -1,5 +1,7 @@
 package info.getsocial.rest;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,7 +17,11 @@ import org.springframework.social.facebook.api.Reference;
 import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Component;
 
+import info.getsocial.converter.FacebookPageToBookTransformer;
+import info.getsocial.converter.FacebookPageToMovieTransformer;
 import info.getsocial.converter.UserToUserProfileTransformer;
+import info.getsocial.domain.UserBook;
+import info.getsocial.domain.UserMovie;
 import info.getsocial.domain.UserProfile;
 
 @Component
@@ -27,6 +33,12 @@ public class UserResource {
 
 	@Autowired
 	UserToUserProfileTransformer userProfileTransformer;
+	
+	@Autowired
+	FacebookPageToBookTransformer facebookPageToBookTransformer;
+	
+	@Autowired
+	FacebookPageToMovieTransformer facebookPageToMovieTransformer;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,9 +57,23 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/books")
 	public Response retrieveUserBooks() {
-		PagedList<Page> books = facebook.likeOperations().getBooks();
+		PagedList<Page> facebookBooks = facebook.likeOperations().getBooks();
+		List<UserBook> books = facebookPageToBookTransformer.transform(facebookBooks);
 		if (books != null && !books.isEmpty()) {
 			return Response.ok(books).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/movies")
+	public Response retrieveUserMovies() {
+		PagedList<Page> facebookMovies = facebook.likeOperations().getMovies();
+		List<UserMovie> movies = facebookPageToMovieTransformer.transform(facebookMovies);
+		if (movies != null && !movies.isEmpty()) {
+			return Response.ok(movies).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -57,10 +83,9 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/friends")
 	public Response retrieveUserFriendsIds() {
-		PagedList<Reference> friendsLists = facebook.friendOperations().getFriends();
-		if (friendsLists != null && !friendsLists.isEmpty()) {
-
-			return Response.ok().build();
+		PagedList<Reference> friendsList = facebook.friendOperations().getFriends();
+		if (friendsList != null && !friendsList.isEmpty()) {
+			return Response.ok(friendsList).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

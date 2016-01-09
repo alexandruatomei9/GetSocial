@@ -1,7 +1,10 @@
 package info.getsocial.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -12,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class UserBook {
 	
 	@Id
-	private int id;
+	private String id;
 
 	@NotNull
 	private String name;
@@ -38,11 +41,15 @@ public class UserBook {
 	@JsonIgnore
 	private Integer numPages;
 	
-	public int getId() {
+	@JsonIgnore
+	@ManyToMany(mappedBy = "books")
+    private Set<UserProfile> userProfiles;
+	
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
