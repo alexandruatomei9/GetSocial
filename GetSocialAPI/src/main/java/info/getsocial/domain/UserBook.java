@@ -1,49 +1,57 @@
 package info.getsocial.domain;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "user_book")
 public class UserBook {
+	
+	@Id
 	private int id;
-	private String title;
-	private String isbn;
-	private double rating;
-	private int ratingCount;
-	private int numPages;
+
+	@NotNull
+	private String name;
+	
+	@JsonIgnore
 	private String description;
-	private URL imageURL;
-	private URL thumbnailURL;
-	private String link;
-	private List<String> authors;
-
-	public UserBook() {
-		authors = new ArrayList<String>();
+	
+	@JsonIgnore
+	private Integer likes;
+	
+	@JsonIgnore
+	private String coverUrl;
+	
+	@JsonIgnore
+	private Double rating;
+	
+	@JsonIgnore
+	private Integer ratingCount;
+	
+	@JsonIgnore
+	private String isbn;
+	
+	@JsonIgnore
+	private Integer numPages;
+	
+	public int getId() {
+		return id;
 	}
 
-	public UserBook(int id, String title, int rating, String description, String author) {
-		super();
+	public void setId(int id) {
 		this.id = id;
-		this.title = title;
-		this.rating = rating;
-		this.description = description;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double d) {
-		this.rating = d;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -54,99 +62,52 @@ public class UserBook {
 		this.description = description;
 	}
 
-	public int getId() {
-		return id;
+	public Integer getLikes() {
+		return likes;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setLikes(Integer likes) {
+		this.likes = likes;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String url) {
+		this.coverUrl = url;
+	}
+
+	public Integer getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(Integer ratingCount) {
+		this.ratingCount = ratingCount;
 	}
 
 	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setImageURL(String imageURL) {
-		try {
-			this.imageURL = new URL(imageURL);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
-	public URL getImageURL() {
-		return imageURL;
-	}
-
-	public void setThumbnailURL(String thumbnailURL) {
-		try {
-			this.thumbnailURL = new URL(thumbnailURL);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public URL getThumbnailURL() {
-		return thumbnailURL;
-	}
-
-	public void setRatingCount(int ratingCount) {
-		this.ratingCount = ratingCount;
-	}
-
-	public int getRatingCount() {
-		return ratingCount;
-	}
-
-	public void setNumPages(int numPages) {
-		this.numPages = numPages;
-	}
-
-	public int getNumPages() {
+	public Integer getNumPages() {
 		return numPages;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setNumPages(Integer numPages) {
+		this.numPages = numPages;
 	}
 
-	public String getLink() {
-		return link;
+	public Double getRating() {
+		return rating;
 	}
 
-	public List<String> getAuthors() {
-		return authors;
+	public void setRating(Double rating) {
+		this.rating = rating;
 	}
-
-	public void addAuthor(String name) {
-		authors.add(name);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ");
-		sb.append(id + "\n\t");
-		sb.append(title + "\n\t");
-		sb.append(isbn + "\n\t");
-		sb.append(rating + "\n\t");
-		sb.append(ratingCount + "\n\t");
-		sb.append(numPages + "\n\t");
-		sb.append(description + "\n\t");
-		sb.append(imageURL.toString() + "\n\t");
-		sb.append(thumbnailURL.toString() + "\n\t");
-		sb.append(link + "\n\t");
-		for (String author : authors) {
-			sb.append(author);
-		}
-
-		return sb.toString();
-	}
-
+	
 }
