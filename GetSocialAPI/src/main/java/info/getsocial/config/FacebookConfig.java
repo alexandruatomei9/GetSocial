@@ -22,18 +22,21 @@ import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
-import info.getsocial.security.SocialUserService;
 import info.getsocial.security.UserAuthenticationUserIdSource;
 
 @Configuration
 @EnableSocial
 public class FacebookConfig extends SocialConfigurerAdapter {
 
+	private static String ABOUT_ME_PERMISSION = "user_about_me";
+	private static String BOOKS_PERMISSION = "user_actions.books";
+	private static String EDUCATION_PERMISSION = "user_education_history";
+	private static String MUSIC_PERMISSION = "user_actions.music";
+	private static String LOCATION_PERMISSION = "user_location";
+	private static String READ_CUSTOM_FRIENDLIST = "read_custom_friendlists";
+	private static String READ_FRIENDLIST = "user_friends";
 	@Autowired
 	private ConnectionSignUp autoSignUpHandler;
-
-	@Autowired
-	private SocialUserService userService;
 
 	@Autowired
 	private DataSource datasource;
@@ -43,6 +46,8 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 		FacebookConnectionFactory fbConnFactory = new FacebookConnectionFactory(
 				environment.getProperty("facebook.appKey"), environment.getProperty("facebook.appSecret"),
 				environment.getProperty("facebook.appNameSpace"));
+		fbConnFactory.setScope(ABOUT_ME_PERMISSION + "," + BOOKS_PERMISSION + "," + EDUCATION_PERMISSION + ","
+				+ MUSIC_PERMISSION + "," + LOCATION_PERMISSION + "," + READ_CUSTOM_FRIENDLIST + "," + READ_FRIENDLIST);
 		connectionFactoryConfigurer.addConnectionFactory(fbConnFactory);
 	}
 
@@ -62,19 +67,11 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-		// UsersConnectionRepositoryImpl usersConnectionRepository = new
-		// UsersConnectionRepositoryImpl(userService,
-		// connectionFactoryLocator);
-		//
-		// // if no local user record exists yet for a facebook's user id
-		// // automatically create a User and add it to the database
-		// usersConnectionRepository.setConnectionSignUp(autoSignUpHandler);
-		
-		JdbcUsersConnectionRepository repo = new JdbcUsersConnectionRepository(datasource,
-												 connectionFactoryLocator,
-												 Encryptors.noOpText());
+
+		JdbcUsersConnectionRepository repo = new JdbcUsersConnectionRepository(datasource, connectionFactoryLocator,
+				Encryptors.noOpText());
 		repo.setConnectionSignUp(autoSignUpHandler);
-		
+
 		return repo;
 	}
 }

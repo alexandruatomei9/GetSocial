@@ -14,7 +14,6 @@ public class RestResponse {
 	}
 
 	// getters and setters
-
 	public int getStatus() {
 		return status;
 	}
