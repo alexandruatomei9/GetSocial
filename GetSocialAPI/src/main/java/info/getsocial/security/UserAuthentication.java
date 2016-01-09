@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public class UserAuthentication implements Authentication {
 
@@ -14,10 +14,10 @@ public class UserAuthentication implements Authentication {
 	 */
 	private static final long serialVersionUID = 9131101412108031795L;
 
-	private final User user;
+	private final UserAccount user;
 	private boolean authenticated = true;
 
-	public UserAuthentication(User user) {
+	public UserAuthentication(UserAccount user) {
 		this.user = user;
 	}
 
@@ -37,7 +37,7 @@ public class UserAuthentication implements Authentication {
 	}
 
 	@Override
-	public User getDetails() {
+	public UserAccount getDetails() {
 		return user;
 	}
 

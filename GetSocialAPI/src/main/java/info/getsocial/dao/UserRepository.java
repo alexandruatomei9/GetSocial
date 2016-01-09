@@ -1,13 +1,13 @@
 package info.getsocial.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserAccount, Long> {
 
-	User findByUsername(String username);
+	UserAccount findByUsername(String username);
 
-	User findById(Long id);
+	UserAccount findById(Long id);
 
-	User findByProviderIdAndProviderUserId(String providerId, String providerUserId);
+	UserAccount findByProviderIdAndProviderUserId(String providerId, String providerUserId);
 }

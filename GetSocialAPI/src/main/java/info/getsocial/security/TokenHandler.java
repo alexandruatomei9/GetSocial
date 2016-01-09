@@ -14,7 +14,7 @@ import javax.xml.bind.DatatypeConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public final class TokenHandler {
 
@@ -33,7 +33,7 @@ public final class TokenHandler {
 		}
 	}
 
-	public User parseUserFromToken(String token) {
+	public UserAccount parseUserFromToken(String token) {
 		final String[] parts = token.split(SEPARATOR_SPLITTER);
 		if (parts.length == 2 && parts[0].length() > 0 && parts[1].length() > 0) {
 			try {
@@ -42,7 +42,7 @@ public final class TokenHandler {
 
 				boolean validHash = Arrays.equals(createHmac(userBytes), hash);
 				if (validHash) {
-					final User user = fromJSON(userBytes);
+					final UserAccount user = fromJSON(userBytes);
 					if (new Date().getTime() < user.getExpires()) {
 						return user;
 					}
@@ -54,7 +54,7 @@ public final class TokenHandler {
 		return null;
 	}
 
-	public String createTokenForUser(User user) {
+	public String createTokenForUser(UserAccount user) {
 		byte[] userBytes = toJSON(user);
 		byte[] hash = createHmac(userBytes);
 		final StringBuilder sb = new StringBuilder(170);
@@ -64,15 +64,15 @@ public final class TokenHandler {
 		return sb.toString();
 	}
 
-	private User fromJSON(final byte[] userBytes) {
+	private UserAccount fromJSON(final byte[] userBytes) {
 		try {
-			return new ObjectMapper().readValue(new ByteArrayInputStream(userBytes), User.class);
+			return new ObjectMapper().readValue(new ByteArrayInputStream(userBytes), UserAccount.class);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	private byte[] toJSON(User user) {
+	private byte[] toJSON(UserAccount user) {
 		try {
 			return new ObjectMapper().writeValueAsBytes(user);
 		} catch (JsonProcessingException e) {

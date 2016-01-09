@@ -21,17 +21,17 @@ public class UserAuthority implements GrantedAuthority {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	@Id
-	private User user;
+	private UserAccount user;
 
 	@NotNull
 	@Id
 	private String authority;
 
-	public User getUser() {
+	public UserAccount getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserAccount user) {
 		this.user = user;
 	}
 

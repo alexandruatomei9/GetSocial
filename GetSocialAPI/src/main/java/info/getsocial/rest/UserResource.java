@@ -15,6 +15,9 @@ import org.springframework.social.facebook.api.Reference;
 import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Component;
 
+import info.getsocial.converter.UserToUserProfileTransformer;
+import info.getsocial.domain.UserProfile;
+
 @Component
 @Path("/user")
 public class UserResource {
@@ -22,13 +25,17 @@ public class UserResource {
 	@Autowired
 	Facebook facebook;
 
+	@Autowired
+	UserToUserProfileTransformer userProfileTransformer;
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/details")
 	public Response retrieveUserDetails() {
 		User user = facebook.userOperations().getUserProfile();
 		if (user != null) {
-			return Response.ok(user).build();
+			UserProfile usrProfile = userProfileTransformer.transform(user);
+			return Response.ok(usrProfile).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

@@ -10,7 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 @Component
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -26,7 +26,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 			Authentication authentication) throws ServletException, IOException {
 
 		// Lookup the complete User object from the database and create an Authentication for it
-		final User authenticatedUser = userService.loadUserByUsername(authentication.getName());
+		final UserAccount authenticatedUser = userService.loadUserByUsername(authentication.getName());
 
 		// Add UserAuthentication to the response
 		final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);

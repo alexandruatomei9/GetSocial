@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import info.getsocial.dao.UserRepository;
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 @Component
 public class AutoSignUpHandler implements ConnectionSignUp {
@@ -19,7 +19,7 @@ public class AutoSignUpHandler implements ConnectionSignUp {
     @Transactional
     public String execute(final Connection<?> connection) {
         //add new users to the db with its default roles for later use in SocialAuthenticationSuccessHandler
-        final User user = new User();
+        final UserAccount user = new UserAccount();
         user.setUsername(generateUniqueUserName(connection.fetchUserProfile().getFirstName()));
         user.setProviderId(connection.getKey().getProviderId());
         user.setProviderUserId(connection.getKey().getProviderUserId());
@@ -29,7 +29,7 @@ public class AutoSignUpHandler implements ConnectionSignUp {
         return user.getUserId();
     }
 
-    private void grantRoles(final User user) {
+    private void grantRoles(final UserAccount user) {
         user.grantRole(UserRole.USER);
     }
 

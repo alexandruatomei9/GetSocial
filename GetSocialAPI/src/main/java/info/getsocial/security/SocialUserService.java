@@ -4,13 +4,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.security.SocialUserDetailsService;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public interface SocialUserService extends SocialUserDetailsService, UserDetailsService {
 
-    User loadUserByConnectionKey(ConnectionKey connectionKey);
-    User loadUserByUserId(String userId);
-    User loadUserByUsername(String username);
-    void updateUserDetails(User user);
+    UserAccount loadUserByConnectionKey(ConnectionKey connectionKey);
+    UserAccount loadUserByUserId(String userId);
+    UserAccount loadUserByUsername(String username);
+    void updateUserDetails(UserAccount user);
 
 }

@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import info.getsocial.AbstractTest;
-import info.getsocial.domain.Movie;
+import info.getsocial.domain.UserMovie;
 import info.getsocial.domain.exception.GetSocialException;
 
 public class ImdbApiConnectionTest extends AbstractTest{
@@ -25,7 +25,7 @@ public class ImdbApiConnectionTest extends AbstractTest{
 		apiConnection = (ImdbApiConnection) connectionFactory.getConnection(SocialNetworks.IMDB);
 		
 		//when
-		Movie movie = apiConnection.getMovieByTitle(title);
+		UserMovie movie = apiConnection.getMovieByTitle(title);
 		
 		//then
 		assertNotNull(movie);

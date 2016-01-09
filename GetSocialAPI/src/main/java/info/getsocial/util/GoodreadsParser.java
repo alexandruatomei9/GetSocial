@@ -12,7 +12,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import info.getsocial.domain.Book;
+import info.getsocial.domain.UserBook;
 
 public class GoodreadsParser {
 
@@ -20,7 +20,7 @@ public class GoodreadsParser {
 
     }
     
-    public List<Book> parseBookWithReviews(URL url) throws RuntimeException {
+    public List<UserBook> parseBookWithReviews(URL url) throws RuntimeException {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             
             GoodreadsHandler handler = new GoodreadsHandler();

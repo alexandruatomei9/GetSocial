@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import info.getsocial.AbstractTest;
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public class DaoUserImplTests extends AbstractTest {
 	

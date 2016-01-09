@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,9 +27,9 @@ public class TokenHandlerTest {
 	
 	@Test
 	public void testCreateToken_SeparatorCharInUsername() {
-		final User user = robbert();
+		final UserAccount user = robbert();
 
-		final User parsedUser = tokenHandler.parseUserFromToken(tokenHandler.createTokenForUser(user));
+		final UserAccount parsedUser = tokenHandler.parseUserFromToken(tokenHandler.createTokenForUser(user));
 
 		assertEquals(user.getUsername(), parsedUser.getUsername());
 	}
@@ -45,12 +45,12 @@ public class TokenHandlerTest {
 	}
 
 	private void testForNullResult(final String token) {
-		final User result = tokenHandler.parseUserFromToken(token);
+		final UserAccount result = tokenHandler.parseUserFromToken(token);
 		assertNull(result);
 	}
 
-	private User robbert() {
-		final User robbert = new User();
+	private UserAccount robbert() {
+		final UserAccount robbert = new UserAccount();
 		robbert.setUsername("Robbert");
 		robbert.setId(123456L);
 		robbert.setExpires(new Date(new Date().getTime() + 10000000).getTime());

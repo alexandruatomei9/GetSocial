@@ -1,6 +1,6 @@
 package info.getsocial.domain;
 
-public class Movie {
+public class UserMovie {
 	private String title;
     private String year;
     private String released;

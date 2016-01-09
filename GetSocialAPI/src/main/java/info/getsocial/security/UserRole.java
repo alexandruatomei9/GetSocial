@@ -1,12 +1,12 @@
 package info.getsocial.security;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 import info.getsocial.domain.UserAuthority;
 
 public enum UserRole {
 	USER;
 
-	public UserAuthority asAuthorityFor(final User user) {
+	public UserAuthority asAuthorityFor(final UserAccount user) {
 		final UserAuthority authority = new UserAuthority();
 		authority.setAuthority("ROLE_" + toString());
 		authority.setUser(user);

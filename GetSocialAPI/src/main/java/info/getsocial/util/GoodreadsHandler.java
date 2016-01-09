@@ -7,11 +7,11 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import info.getsocial.domain.Book;
+import info.getsocial.domain.UserBook;
 
 public class GoodreadsHandler extends DefaultHandler{
-    private List<Book> books;
-    private Book currentBook;
+    private List<UserBook> books;
+    private UserBook currentBook;
     /*
      * List of elements we can encounter in this xml and needed to build up the POJO objects.
      */
@@ -42,11 +42,11 @@ public class GoodreadsHandler extends DefaultHandler{
     
     public GoodreadsHandler() {
             currentvalue = new StringBuilder();
-            books = new ArrayList<Book>();
+            books = new ArrayList<UserBook>();
             branchInXML = ELEM_BOOK; //first element in the xml structure we need to interpret is book
     }
     
-    public List<Book> getBooks() {
+    public List<UserBook> getBooks() {
             return books;
     }
     
@@ -59,7 +59,7 @@ public class GoodreadsHandler extends DefaultHandler{
                     Attributes attributes) throws SAXException {
             //set current branch and instantiate necessary objects
             if(localName.equalsIgnoreCase(ELEM_BOOK)) {
-                    currentBook = new Book();
+                    currentBook = new UserBook();
                     branchInXML = ELEM_BOOK;
             } else if(localName.equalsIgnoreCase(ELEM_AUTHORS) || localName.equalsIgnoreCase(ELEM_USER)) {
                     branchInXML = localName;

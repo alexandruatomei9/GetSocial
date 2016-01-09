@@ -26,7 +26,7 @@ import info.getsocial.security.UserRole;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "user_account", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
-public class User implements SocialUserDetails {
+public class UserAccount implements SocialUserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

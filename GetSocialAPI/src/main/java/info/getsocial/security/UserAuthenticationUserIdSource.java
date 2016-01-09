@@ -4,16 +4,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.UserIdSource;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public class UserAuthenticationUserIdSource implements UserIdSource {
 
 	@Override
 	public String getUserId() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User user = null;
+		UserAccount user = null;
 		if (authentication instanceof UserAuthentication) {
-			user = (User) authentication.getPrincipal();
+			user = (UserAccount) authentication.getPrincipal();
 		}
 
 		if (user == null) {

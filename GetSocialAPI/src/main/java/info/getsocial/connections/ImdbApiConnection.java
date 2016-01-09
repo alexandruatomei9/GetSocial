@@ -14,7 +14,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import info.getsocial.domain.Movie;
+import info.getsocial.domain.UserMovie;
 import info.getsocial.domain.exception.GetSocialException;
 
 public class ImdbApiConnection implements SocialApiConnection {
@@ -26,7 +26,7 @@ public class ImdbApiConnection implements SocialApiConnection {
 		//this api do not needs a connection, every query can be submitted individually
 	}
 
-	public Movie getMovieByTitle(String title) throws GetSocialException{
+	public UserMovie getMovieByTitle(String title) throws GetSocialException{
 		if(StringUtils.isEmpty(title)) {
 			throw new GetSocialException(418);
 		}
@@ -36,7 +36,7 @@ public class ImdbApiConnection implements SocialApiConnection {
 			Map<String, String> map = new Gson().fromJson(new InputStreamReader(input, "UTF-8"),
 					new TypeToken<Map<String, String>>(){}.getType());
 			
-			Movie movie = new Movie();
+			UserMovie movie = new UserMovie();
 			movie.setTitle(map.get("Title"));
 			movie.setYear(map.get("Year"));
 			movie.setReleased(map.get("Released"));

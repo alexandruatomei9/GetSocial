@@ -9,7 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.social.connect.*;
 import org.springframework.social.connect.mem.TemporaryConnectionRepository;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 public class UsersConnectionRepositoryImpl implements UsersConnectionRepository {
 
@@ -26,7 +26,7 @@ public class UsersConnectionRepositoryImpl implements UsersConnectionRepository 
 	@Override
     public List<String> findUserIdsWithConnection(Connection<?> connection) {
         try {
-            User user = userService.loadUserByConnectionKey(connection.getKey());
+            UserAccount user = userService.loadUserByConnectionKey(connection.getKey());
             user.setAccessToken(connection.createData().getAccessToken());
             userService.updateUserDetails(user);
             return Arrays.asList(user.getUserId());
@@ -52,7 +52,7 @@ public class UsersConnectionRepositoryImpl implements UsersConnectionRepository 
     @Override
     public ConnectionRepository createConnectionRepository(String userId) {
         final ConnectionRepository connectionRepository = new TemporaryConnectionRepository(connectionFactoryLocator);
-        final User user = userService.loadUserByUserId(userId);
+        final UserAccount user = userService.loadUserByUserId(userId);
         final ConnectionData connectionData = new ConnectionData(
                 user.getProviderId(),
                 user.getProviderUserId(),

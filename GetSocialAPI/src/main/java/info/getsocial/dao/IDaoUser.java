@@ -1,7 +1,7 @@
 package info.getsocial.dao;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
-public interface IDaoUser extends IDaoBase<User> {
+public interface IDaoUser extends IDaoBase<UserAccount> {
 
 }

@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class UserBook {
 	private int id;
 	private String title;
 	private String isbn;
@@ -18,11 +18,11 @@ public class Book {
 	private String link;
 	private List<String> authors;
 
-	public Book() {
+	public UserBook() {
 		authors = new ArrayList<String>();
 	}
 
-	public Book(int id, String title, int rating, String description, String author) {
+	public UserBook(int id, String title, int rating, String description, String author) {
 		super();
 		this.id = id;
 		this.title = title;

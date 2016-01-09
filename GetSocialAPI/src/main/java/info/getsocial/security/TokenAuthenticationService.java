@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import info.getsocial.domain.User;
+import info.getsocial.domain.UserAccount;
 
 @Service
 public class TokenAuthenticationService {
@@ -26,7 +26,7 @@ public class TokenAuthenticationService {
 	}
 
 	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
-		final User user = authentication.getDetails();
+		final UserAccount user = authentication.getDetails();
 		user.setExpires(System.currentTimeMillis() + TEN_DAYS);
 		final String token = tokenHandler.createTokenForUser(user);
 
@@ -44,7 +44,7 @@ public class TokenAuthenticationService {
 		// in the header)
 		final String token = request.getHeader(AUTH_HEADER_NAME);
 		if (token != null) {
-			final User user = tokenHandler.parseUserFromToken(token);
+			final UserAccount user = tokenHandler.parseUserFromToken(token);
 			if (user != null) {
 				return new UserAuthentication(user);
 			}
