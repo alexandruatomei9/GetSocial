@@ -29,12 +29,14 @@ import info.getsocial.security.UserAuthenticationUserIdSource;
 public class FacebookConfig extends SocialConfigurerAdapter {
 
 	private static String ABOUT_ME_PERMISSION = "user_about_me";
-	private static String BOOKS_PERMISSION = "user_actions.books";
 	private static String EDUCATION_PERMISSION = "user_education_history";
 	private static String MUSIC_PERMISSION = "user_actions.music";
 	private static String LOCATION_PERMISSION = "user_location";
 	private static String READ_CUSTOM_FRIENDLIST = "read_custom_friendlists";
 	private static String READ_FRIENDLIST = "user_friends";
+	private static String NEWS_PERMISSION = "user_actions.news";
+	private static String BOOKS_PERMISSION = "user_likes";
+	
 	@Autowired
 	private ConnectionSignUp autoSignUpHandler;
 
@@ -47,7 +49,8 @@ public class FacebookConfig extends SocialConfigurerAdapter {
 				environment.getProperty("facebook.appKey"), environment.getProperty("facebook.appSecret"),
 				environment.getProperty("facebook.appNameSpace"));
 		fbConnFactory.setScope(ABOUT_ME_PERMISSION + "," + BOOKS_PERMISSION + "," + EDUCATION_PERMISSION + ","
-				+ MUSIC_PERMISSION + "," + LOCATION_PERMISSION + "," + READ_CUSTOM_FRIENDLIST + "," + READ_FRIENDLIST);
+				+ MUSIC_PERMISSION + "," + LOCATION_PERMISSION + "," + READ_CUSTOM_FRIENDLIST + "," + READ_FRIENDLIST
+				+ "," + NEWS_PERMISSION);
 		connectionFactoryConfigurer.addConnectionFactory(fbConnFactory);
 	}
 
