@@ -26,7 +26,6 @@ public class UserToUserProfileTransformer extends Transformer<org.springframewor
 		profile.setHometown(e.getHometown());
 		profile.setLocale(e.getLocale());
 		profile.setWork(e.getWork());
-		profile.setInterestedIn(e.getInterestedIn());
 		return profile;
 	}
 

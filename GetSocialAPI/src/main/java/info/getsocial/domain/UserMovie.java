@@ -28,7 +28,7 @@ public class UserMovie {
 	@JsonIgnore
     private String runtime;
     
-    @NotNull
+	@JsonIgnore
     private String genre;
     
     @JsonIgnore
@@ -112,5 +112,9 @@ public class UserMovie {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public void addUserProfile(UserProfile userProfile) {
+		this.userProfiles.add(userProfile);
 	}
 }

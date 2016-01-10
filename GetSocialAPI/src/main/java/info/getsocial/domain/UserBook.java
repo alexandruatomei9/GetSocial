@@ -117,4 +117,7 @@ public class UserBook {
 		this.rating = rating;
 	}
 	
+	public void addUserProfile(UserProfile userProfile) {
+		this.userProfiles.add(userProfile);
+	}
 }
