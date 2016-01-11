@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user_book")
-public class UserBook {
+public class UserBook extends BaseEntity{
 	
 	@Id
 	private String id;

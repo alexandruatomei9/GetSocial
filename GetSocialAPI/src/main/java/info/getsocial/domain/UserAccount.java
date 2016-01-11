@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +26,7 @@ import info.getsocial.security.UserRole;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "user_account", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
-public class UserAccount implements SocialUserDetails {
+public class UserAccount extends BaseEntity implements SocialUserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
