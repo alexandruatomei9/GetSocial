@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @IdClass(UserAuthority.class)
-public class UserAuthority implements GrantedAuthority {
+public class UserAuthority extends BaseEntity implements GrantedAuthority {
 
 	private static final long serialVersionUID = -5711012391032715396L;
 

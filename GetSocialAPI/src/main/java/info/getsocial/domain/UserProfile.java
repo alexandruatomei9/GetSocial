@@ -21,7 +21,7 @@ import org.springframework.social.facebook.api.WorkEntry;
 
 @Entity
 @Table(name = "user_profile")
-public class UserProfile {
+public class UserProfile extends BaseEntity{
 	
 	@Id
 	private String id;
