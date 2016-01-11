@@ -37,4 +37,14 @@ public class UserProfileServiceImpl implements UserProfileService{
 		return userProfileRepo.findById(loggedInUser.getProviderUserId());
 	}
 
+	@Override
+	public String getAuthenticatedUserProfileId() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserAccount principal = (UserAccount) authentication.getPrincipal();
+		UserAccount loggedInUser = userRepo.findById(principal.getId());
+		return loggedInUser.getProviderUserId();
+	}
+	
+	
+
 }

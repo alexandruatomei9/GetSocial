@@ -8,5 +8,7 @@ public interface UserProfileService {
 	
 	UserProfile getUserProfileById(String id);
 	
+	String getAuthenticatedUserProfileId();
+	
 	UserProfile getAuthenticatedUserProfile();
 }
