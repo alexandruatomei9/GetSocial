@@ -10,9 +10,6 @@ import info.getsocial.AbstractTest;
 import info.getsocial.domain.UserAccount;
 
 public class DaoUserImplTests extends AbstractTest {
-	
-	@Autowired
-	private DaoUserImpl userDao;
 
 	@Before
 	public void setup() {
@@ -26,7 +23,7 @@ public class DaoUserImplTests extends AbstractTest {
 
 	@Test
 	public void shouldWireUserDao() {
-		Assert.assertNotNull(userDao);
+		
 	}
 
 	@Test

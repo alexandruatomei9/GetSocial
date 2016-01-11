@@ -77,7 +77,7 @@ public class GoodreadsHandler extends DefaultHandler {
 		 */
 		if (branchInXML.equalsIgnoreCase(ELEM_BOOK)) {
 			if (localName.equalsIgnoreCase(ELEM_ID)) {
-				currentBook.setId(new Integer(currentvalue.toString()));
+				currentBook.setId(currentvalue.toString());
 			} else if (localName.equalsIgnoreCase(ELEM_TITLE)) {
 				currentBook.setName(currentvalue.toString());
 			} else if (localName.equalsIgnoreCase(ELEM_ISBN)) {

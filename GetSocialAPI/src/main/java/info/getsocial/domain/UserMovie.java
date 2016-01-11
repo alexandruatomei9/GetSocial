@@ -1,15 +1,51 @@
 package info.getsocial.domain;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "user_movie")
 public class UserMovie {
+	@Id
+	private String id;
+	
+	@NotNull
 	private String title;
+	
+	@JsonIgnore
     private String year;
+	
+	@JsonIgnore
     private String released;
+	
+	@JsonIgnore
     private String runtime;
+    
+	@JsonIgnore
     private String genre;
+    
+    @JsonIgnore
     private String actors;
+    
+    @JsonIgnore
     private String plot;
+    
+    @JsonIgnore
     private String imdbRating;
+    
+    @JsonIgnore
     private String poster;
+    
+    @JsonIgnore
+    @ManyToMany(mappedBy = "movies")
+    private Set<UserProfile> userProfiles;
     
 	public String getTitle() {
 		return title;
@@ -64,5 +100,21 @@ public class UserMovie {
 	}
 	public void setPoster(String poster) {
 		this.poster = poster;
+	}
+	public Set<UserProfile> getUserProfiles() {
+		return userProfiles;
+	}
+	public void setUserProfiles(Set<UserProfile> userProfiles) {
+		this.userProfiles = userProfiles;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public void addUserProfile(UserProfile userProfile) {
+		this.userProfiles.add(userProfile);
 	}
 }
