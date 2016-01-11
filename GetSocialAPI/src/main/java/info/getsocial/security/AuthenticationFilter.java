@@ -14,11 +14,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
+import info.getsocial.dao.UserRepository;
+import info.getsocial.domain.UserAccount;
+
 @Component
 public class AuthenticationFilter extends GenericFilterBean {
 
 	@Autowired
 	private TokenAuthenticationService tokenAuthenticationService;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -33,8 +39,16 @@ public class AuthenticationFilter extends GenericFilterBean {
 		if (!(authentication instanceof UserAuthentication)) {
 			final UserAuthentication userAuthentication = tokenAuthenticationService.getAuthentication(request);
 			if (userAuthentication != null) {
-				SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+				UserAccount account = (UserAccount) userAuthentication.getPrincipal();
+				if (account != null && userExistsInDB(account.getId())) {
+					SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+				}
 			}
 		}
+	}
+
+	private boolean userExistsInDB(Long id) {
+		UserAccount account = userRepo.findById(id);
+		return (account != null);
 	}
 }
