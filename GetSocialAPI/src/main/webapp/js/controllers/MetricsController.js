@@ -1,12 +1,7 @@
 'use strict';
 
-GetSocial.controller('MetricsController', function MetricsController($scope, FacebookService) {
+GetSocial.controller('MetricsController', function MetricsController($scope) {
 
   $scope.customerName = 'adsad';
   $scope.customerAddress = 'asdasdsadas';
-
-
-  $scope.connectToFacebook = function() {
-	FacebookService.facebookOauth();
-  };
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-GetSocial.controller('NavbarController', function NavbarController($scope, $cookies, $location, $rootScope) {
+GetSocial.controller('NavbarController', function NavbarController($scope, $cookies, $location) {
 
     $scope.routeIs = function(routeName) {
       return $location.path() === routeName;
@@ -11,7 +11,6 @@ GetSocial.controller('NavbarController', function NavbarController($scope, $cook
       if (authCookie) {
         delete $cookies['AUTH-TOKEN'];
       }
-      $rootScope.authenticated = true;
       $location.url('/');
     };
 
