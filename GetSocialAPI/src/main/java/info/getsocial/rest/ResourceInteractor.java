@@ -20,6 +20,11 @@ import info.getsocial.converter.FacebookPageToUserMusicTransformer;
 import info.getsocial.converter.ReferenceToUserAthleteTransformer;
 import info.getsocial.converter.ReferenceToUserTeamsTransformer;
 import info.getsocial.converter.UserToUserProfileTransformer;
+import info.getsocial.dao.UserAthleteRepository;
+import info.getsocial.dao.UserBookRepository;
+import info.getsocial.dao.UserMovieRepository;
+import info.getsocial.dao.UserMusicRepository;
+import info.getsocial.dao.UserTeamRepository;
 import info.getsocial.domain.UserAthlete;
 import info.getsocial.domain.UserBook;
 import info.getsocial.domain.UserMovie;
@@ -36,6 +41,21 @@ public class ResourceInteractor {
 
 	@Autowired
 	UserProfileService userProfileService;
+	
+	@Autowired
+	UserAthleteRepository userAthleteRepo;
+	
+	@Autowired
+	UserBookRepository userBookRepo;
+	
+	@Autowired
+	UserMovieRepository userMovieRepo;
+	
+	@Autowired
+	UserMusicRepository userMusicRepo;
+	
+	@Autowired
+	UserTeamRepository userTeamRepo;
 
 	@Autowired
 	UserToUserProfileTransformer userProfileTransformer;
@@ -75,16 +95,21 @@ public class ResourceInteractor {
 	}
 
 	public Response retrieveUserBooks(String userId) {
+		List<UserBook> books = new ArrayList<UserBook>();
 		if (userId == null) {
 			userId = userProfileService.getAuthenticatedUserProfileId();
 		}
-		PagedList<Page> facebookBooks = facebook.likeOperations().getBooks(userId);
 		UserProfile profile = userProfileService.getUserProfileById(userId);
-		;
-
-		List<UserBook> books = facebookPageToBookTransformer.transform(facebookBooks);
-		profile.addBooks(books);
-		userProfileService.saveUserProfile(profile);
+		
+		books.addAll(profile.getBooks());
+		
+		if(books.isEmpty()) {
+			PagedList<Page> facebookBooks = facebook.likeOperations().getBooks(userId);
+			books = facebookPageToBookTransformer.transform(facebookBooks);
+			profile.addBooks(books);
+			userProfileService.saveUserProfile(profile);
+		}
+		
 		if (books != null && !books.isEmpty()) {
 			return Response.ok(books).build();
 		} else {
@@ -93,14 +118,20 @@ public class ResourceInteractor {
 	}
 
 	public Response retrieveUserMovies(String userId) {
+		List<UserMovie> movies = new ArrayList<UserMovie>();
 		if (userId == null) {
 			userId = userProfileService.getAuthenticatedUserProfileId();
 		}
-		PagedList<Page> facebookMovies = facebook.likeOperations().getMovies(userId);
-		List<UserMovie> movies = facebookPageToMovieTransformer.transform(facebookMovies);
 		UserProfile profile = userProfileService.getUserProfileById(userId);
-		profile.addMovies(movies);
-		userProfileService.saveUserProfile(profile);
+		
+		movies.addAll(profile.getMovies());
+		
+		if(movies.isEmpty()) {
+			PagedList<Page> facebookMovies = facebook.likeOperations().getMovies(userId);
+			movies = facebookPageToMovieTransformer.transform(facebookMovies);
+			profile.addMovies(movies);
+			userProfileService.saveUserProfile(profile);
+		}
 		if (movies != null && !movies.isEmpty()) {
 			return Response.ok(movies).build();
 		} else {
@@ -109,14 +140,20 @@ public class ResourceInteractor {
 	}
 
 	public Response retrieveUserMusic(String userId) {
+		List<UserMusic> music = new ArrayList<UserMusic>();
 		if (userId == null) {
 			userId = userProfileService.getAuthenticatedUserProfileId();
 		}
-		PagedList<Page> facebookMusic = facebook.likeOperations().getMusic(userId);
-		List<UserMusic> music = facebookPageToUserMusicTransformer.transform(facebookMusic);
 		UserProfile profile = userProfileService.getUserProfileById(userId);
-		profile.addMusic(music);
-		userProfileService.saveUserProfile(profile);
+		
+		music.addAll(profile.getMusic());
+		
+		if(music.isEmpty()) {
+			PagedList<Page> facebookMusic = facebook.likeOperations().getMusic(userId);
+			music = facebookPageToUserMusicTransformer.transform(facebookMusic);
+			profile.addMusic(music);
+			userProfileService.saveUserProfile(profile);
+		}
 		if (music != null && !music.isEmpty()) {
 			return Response.ok(music).build();
 		} else {
@@ -125,18 +162,24 @@ public class ResourceInteractor {
 	}
 
 	public Response retrieveUserSportTeams(String userId) {
+		List<UserTeam> teams = new ArrayList<UserTeam>();
 		if (userId == null) {
 			userId = userProfileService.getAuthenticatedUserProfileId();
 		}
-		User user = facebook.userOperations().getUserProfile(userId);
-		List<Reference> favoriteTeams = user.getFavoriteTeams();
-		if(favoriteTeams == null) {
-			return Response.ok(new ArrayList<>()).build();
-		}
-		List<UserTeam> teams = referenceToUserTeamsTransformer.transform(favoriteTeams);
 		UserProfile profile = userProfileService.getUserProfileById(userId);
-		profile.addTeams(teams);
-		userProfileService.saveUserProfile(profile);
+		
+		teams.addAll(profile.getTeams());
+		
+		if(teams == null || teams.isEmpty()) {
+			User user = facebook.userOperations().getUserProfile(userId);
+			List<Reference> favoriteTeams = user.getFavoriteTeams();
+			if(favoriteTeams == null) {
+				return Response.ok(new ArrayList<>()).build();
+			}
+			teams = referenceToUserTeamsTransformer.transform(favoriteTeams);
+			profile.addTeams(teams);
+			userProfileService.saveUserProfile(profile);
+		}
 		if (teams != null && !teams.isEmpty()) {
 			return Response.ok(teams).build();
 		} else {
@@ -145,18 +188,24 @@ public class ResourceInteractor {
 	}
 
 	public Response retrieveUserSportAthletes(String userId) {
+		List<UserAthlete> athletes = new ArrayList<UserAthlete>();
 		if (userId == null) {
 			userId = userProfileService.getAuthenticatedUserProfileId();
 		}
-		User user = facebook.userOperations().getUserProfile(userId);
-		List<Reference> favoriteAthletes = user.getFavoriteAtheletes();
-		if(favoriteAthletes == null) {
-			return Response.ok(new ArrayList<>()).build();
-		}
-		List<UserAthlete> athletes = referenceToUserAthleteTransformer.transform(favoriteAthletes);
 		UserProfile profile = userProfileService.getUserProfileById(userId);
-		profile.addAthletes(athletes);
-		userProfileService.saveUserProfile(profile);
+		
+		athletes.addAll(profile.getAthletes());
+		
+		if(athletes == null || athletes.isEmpty()) { 
+			User user = facebook.userOperations().getUserProfile(userId);
+			List<Reference> favoriteAthletes = user.getFavoriteAtheletes();
+			if(favoriteAthletes == null) {
+				return Response.ok(new ArrayList<>()).build();
+			}
+			athletes = referenceToUserAthleteTransformer.transform(favoriteAthletes);
+			profile.addAthletes(athletes);
+			userProfileService.saveUserProfile(profile);
+		}
 		if (athletes != null && !athletes.isEmpty()) {
 			return Response.ok(athletes).build();
 		} else {

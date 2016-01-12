@@ -13,6 +13,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.PagedList;
 import org.springframework.social.facebook.api.Reference;
 import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Path("/user")
@@ -35,6 +36,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/books")
 	@Transactional
+	//@Transactional(readOnly=true)
 	public Response retrieveUserBooks() {
 		return resourceInteractor.retrieveUserBooks(null);
 	}
@@ -43,6 +45,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/movies")
 	@Transactional
+	//@Transactional(readOnly=true)
 	public Response retrieveUserMovies() {
 		return resourceInteractor.retrieveUserMovies(null);
 	}
@@ -51,6 +54,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/music")
 	@Transactional
+	//@Transactional(readOnly=true)
 	public Response retrieveUserMusic() {
 		return resourceInteractor.retrieveUserMusic(null);
 	}
@@ -59,6 +63,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/teams")
 	@Transactional
+	//@Transactional(readOnly=true)
 	public Response retrieveUserSportTeams() {
 		return resourceInteractor.retrieveUserSportTeams(null);
 	}
@@ -67,6 +72,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/athletes")
 	@Transactional
+	//@Transactional(readOnly=true)
 	public Response retrieveUserSportAthletes() {
 		return resourceInteractor.retrieveUserSportAthletes(null);
 	}
