@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 import info.getsocial.domain.UserMusic;
 
 @Component
-public class FacebookPageToUserMusicTransformer extends Transformer<org.springframework.social.facebook.api.Page, UserMusic>{
+public class FacebookPageToUserMusicTransformer
+		extends Transformer<org.springframework.social.facebook.api.Page, UserMusic> {
 
 	@Override
 	public UserMusic transform(Page page) {
+		if (page == null) {
+			return null;
+		}
 		UserMusic music = new UserMusic();
 		music.setId(page.getId());
 		music.setArtistsWeLike(page.getArtistsWeLike());
@@ -18,7 +22,7 @@ public class FacebookPageToUserMusicTransformer extends Transformer<org.springfr
 		music.setMemebers(page.getBandMembers());
 		music.setName(page.getName());
 		music.setRecordLabel(page.getRecordLabel());
-		
+
 		return music;
 	}
 

@@ -10,6 +10,9 @@ public class FacebookPageToMovieTransformer extends Transformer<org.springframew
 
 	@Override
 	public UserMovie transform(Page page) {
+		if(page == null) {
+			return null;
+		}
 		UserMovie movie = new UserMovie();
 		movie.setId(page.getId());
 		movie.setGenre(page.getGenre());

@@ -17,8 +17,6 @@ import info.getsocial.annotations.DefaultTestAnnotations;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.lang.invoke.MethodHandleInfo;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @DefaultTestAnnotations

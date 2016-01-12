@@ -15,6 +15,9 @@ public class ReferenceToUserTeamsTransformer extends Transformer<org.springframe
 	
 	@Override
 	public UserTeam transform(Reference ref) {
+		if(ref == null) {
+			return null;
+		}
 		UserTeam team = new UserTeam();
 		team.setId(ref.getId());
 		team.setName(ref.getName());

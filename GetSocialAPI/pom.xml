@@ -129,7 +129,7 @@
 			<version>9.2-1004-jdbc4</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-erlang</artifactId>
 		</dependency>
@@ -147,7 +147,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-gemfire</artifactId>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 
 	<build>

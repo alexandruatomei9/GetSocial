@@ -10,11 +10,14 @@ public class FacebookPageToBookTransformer extends Transformer<org.springframewo
 
 	@Override
 	public UserBook transform(Page page) {
+		if (page == null) {
+			return null;
+		}
 		UserBook book = new UserBook();
 		book.setId(page.getId());
 		book.setName(page.getName());
 		String desc;
-		if(page.getDescription()!= null && page.getDescription().length() > 200){
+		if (page.getDescription() != null && page.getDescription().length() > 200) {
 			desc = page.getDescription().substring(0, 200) + "...";
 		} else {
 			desc = page.getDescription();
@@ -24,5 +27,5 @@ public class FacebookPageToBookTransformer extends Transformer<org.springframewo
 		book.setLikes(page.getLikes());
 		return book;
 	}
-	
+
 }

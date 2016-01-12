@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 import info.getsocial.domain.UserAthlete;
 
 @Component
-public class ReferenceToUserAthleteTransformer extends Transformer<org.springframework.social.facebook.api.Reference, UserAthlete>{
+public class ReferenceToUserAthleteTransformer
+		extends Transformer<org.springframework.social.facebook.api.Reference, UserAthlete> {
 
 	@Override
 	public UserAthlete transform(Reference ref) {
+		if (ref == null) {
+			return null;
+		}
 		UserAthlete athlete = new UserAthlete();
 		athlete.setId(ref.getId());
 		athlete.setName(ref.getName());
