@@ -7,5 +7,4 @@ import info.getsocial.domain.UserMovie;
 public interface UserMovieRepository extends JpaRepository<UserMovie, String> {
 	
 	UserMovie findById(String id);
-
 }

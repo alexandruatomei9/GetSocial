@@ -7,5 +7,4 @@ import info.getsocial.domain.UserTeam;
 public interface UserTeamRepository extends JpaRepository<UserTeam, String> {
 	
 	UserTeam findById(String id);
-
 }
